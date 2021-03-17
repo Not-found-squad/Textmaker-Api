@@ -93,6 +93,33 @@ def makerr3():
          }
         return js
 
+@app.route('/api/minecraft', methods=['GET'])
+def minecraft():
+    from lib.minecraft import tulis
+    text = request.args.get('text')
+    tulis=tulis(text)
+    for i in tulis.tulis():
+        i.save('gambar.jpg')
+        image = open('gambar.jpg', 'rb')
+        image_read = image.read()
+        image_64_encode = base64.encodebytes(image_read)
+        url = 'https://api.imgbb.com/1/upload'
+        par = {
+         'key':'761ea2d5575581057a799d14e9c78e28',
+         'image':image_64_encode,
+         'name':'support zahirr',
+         'expiration': 60
+         }
+        headers = {
+         'Accept': 'application/json'
+         }
+        req = requests.post(url,data=par, headers=headers)
+        p = req.json()['data']['display_url']
+        js = {
+         "results":p
+         }
+        return js
+
 @app.route('/api/textmaker4', methods=['GET'])
 def makerr4():
     from lib.textmaker4 import tulis
