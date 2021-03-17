@@ -94,7 +94,7 @@ def makerr3():
         return js
 
 @app.route('/api/minecraft', methods=['GET'])
-def minecraft():
+def makerr4():
     from lib.minecraft import tulis
     text = request.args.get('text')
     tulis=tulis(text)
