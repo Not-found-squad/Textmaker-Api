@@ -93,8 +93,8 @@ def makerr3():
          }
         return js
 
-@app.route('/api/minecraft', methods=['GET'])
-def mcpe():
+@app.route('/api/textgame', methods=['GET'])
+def minkrep():
     from lib.minecraft import tulis
     text = request.args.get('text')
     tulis=tulis(text)
